@@ -8,6 +8,6 @@ install:
     - ./.install-pari.sh
 cache:
     directories:
-        - pari-2.9.4
+        - pari-2.11.1
 script:
     - make check
