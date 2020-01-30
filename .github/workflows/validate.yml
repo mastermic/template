@@ -1,0 +1,32 @@
+name: Validate
+
+on: [push]
+
+jobs:
+
+  check:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/cache@v1
+      id: cache
+      with:
+        path: pari-2.11.1
+        key: parigp
+
+    - name: Install Pari/GP
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+          pwd
+          ls -Ra
+          bash .install-pari.sh
+
+    - name: Validate
+      id: check
+      run: make check
+
+    - name: Get Time
+      run: echo "Time = ${{ steps.check.outputs.time }}"
