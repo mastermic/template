@@ -1,5 +1,0 @@
-name: 'Validate Challenge'
-description: 'Check the solution actually computes the expected value.'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
